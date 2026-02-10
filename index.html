@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Love ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.yes {
+    background: #ff004f;
+    color: white;
+}
+
+.no {
+    background: white;
+    color: #ff004f;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 22px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+.signature{
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div id="page1">
+    <h1>💍 Will You Marry Me? 💍</h1>
+    <button class="yes" onclick="sayYes()">Yes ❤️</button>
+    <button class="no" id="noBtn" onclick="changeNo()">No 😜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="hidden">
+    <h1>💖 My Love Kannamma 💖</h1>
+    <p style="color:white;font-size:20px;line-height:1.6;">
+        My Bangaram ❤️,<br><br>
+        The moment you said YES, my whole world smiled.  
+        I promise to stand by you, love you deeply,  
+        and hold your hand through every season of life.  
+        You are my today, my tomorrow, and my forever. 💍💖
+    </p>
+</div>
+
+</div>
+
+<script>
+emailjs.init("YOUR_PUBLIC_KEY"); // 🔴 replace
+
+const noTexts = [
+    "Bangaram ❤️",
+    "Cutie 😍",
+    "My Queen 👑",
+    "Sweetheart 💕",
+    "My Life 💖"
+];
+let noIndex = 0;
+
+function changeNo() {
+    const btn = document.getElementById("noBtn");
+    btn.innerText = noTexts[noIndex++ % noTexts.length];
+    btn.style.left = Math.random() * 160 - 80 + "px";
+    btn.style.top = Math.random() * 80 - 40 + "px";
+}
+
+function sayYes() {
+    emailjs.send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        {
+            from_name: "Marriage Proposal Website",
+            message: "She clicked YES ❤️"
+        }
+    );
+
+    page1.classList.add("hidden");
+    page2.classList.remove("hidden");
+    startHearts();
+}
+
+function startHearts() {
+    setInterval(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerText = "❤️";
+        h.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 5000);
+    }, 300);
+}
+</script>
+<footer class="signature">Made with ❤️ by Jana Madhan</footer>
+
+</body>
+</html>
